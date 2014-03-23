@@ -120,6 +120,13 @@
             <artifactId>chaos</artifactId>
             <version>${chaos.version}</version>
         </dependency>
+        <!--
+          mvn install:install-file -Dfile=lib/mesos-0.19.0.jar \
+                                   -DartifactId=mesos -Dversion=0.19.0 \
+                                   -DgroupId=org.apache.mesos \
+                                   -DgeneratePom=true \
+                                   -Dpackaging=jar
+          -->
         <dependency>
             <groupId>org.apache.mesos</groupId>
             <artifactId>mesos</artifactId>
