@@ -1,5 +1,5 @@
 //
-// protoc --java_out=src/main/java/ --proto_path=/path/to/mesos/include/mesos/ --proto_path=src/main/proto/ src/main/proto/marathon.proto
+// protoc --java_out=src/main/java/ --proto_path=src/main/proto/ src/main/proto/marathon.proto
 //
 package mesosphere.marathon;
 
@@ -39,7 +39,6 @@ message ServiceDefinition {
   repeated Constraint constraints = 7;
   required string executor = 8 [default = ""];
   optional double taskRateLimit = 9 [default = 1];
-  optional ContainerInfo container = 10;
   required string version = 11;
 }
 
@@ -56,11 +55,6 @@ message MarathonTask {
 message MarathonApp {
   optional string name = 1;
   repeated MarathonTask tasks = 2;
-}
-
-message ContainerInfo {
-  required bytes image = 1 [default = ""];
-  repeated bytes options = 2;
 }
 
 message EventSubscribers {
