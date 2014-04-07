@@ -120,6 +120,22 @@ class AppDefinition extends MarathonState[Protos.ServiceDefinition] {
     val proto = Protos.ServiceDefinition.parseFrom(bytes)
     mergeFromProto(proto)
   }
+
+  def portsEnv(ports: Seq[Int]): Map[String, String] = {
+    if (ports.isEmpty) {
+      return Map.empty
+    }
+
+    val env = mutable.HashMap.empty[String, String]
+
+    ports.zipWithIndex.foreach(p => {
+      env += (s"APP_PORT${p._2}" -> p._1.toString)
+    })
+
+    env += ("APP_PORT" -> ports.head.toString)
+    env += ("APP_PORTS" -> ports.mkString(","))
+    env.toMap
+  }
 }
 
 object AppDefinition {
